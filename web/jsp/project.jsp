@@ -1,0 +1,131 @@
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RRT Introduction</title>
+    <link href="../css/project.css" rel="stylesheet"></link>
+</head>
+<body>
+
+<%@include file="common/navigation.jsp"%>
+
+<h1 style="text-align: center;">Three types of RRT</h1>
+<div style="text-align: center;">
+    <a href="https://github.com/xsb1999/RRT" style="color: red;">Click here to see the source code</a>
+    <a href="home.jsp" style="color: goldenrod; padding-left: 50px;">Click here to jump to the home page</a>
+</div>
+
+<div>
+    <h2>1. Introduction</h2>
+    <p>RRT is a path planning method using in autonomous driving based on sampling. </p>
+    <p>It can quickly search the entire state space (the real world) and is biased towards the unexplored space. It is very similar to trees with lots of limbs stretching out at each time.</p>
+    <p>The main working flow is that we start from the start position and protrude some limbs randomly, once the limb of the tree reaches the destination, the path is found successfully.</p>
+    <img src="../resource/pics/rrt00.gif">
+    <img src="../resource/pics/rrt01.gif" style="width:810px; height:450px;">
+
+</div>
+<div>
+    <h2>2. Pros & Cons</h2>
+    <h3>Pros: </h3>
+    <p>1) It is fast because of the random sampling, which means we don’t need to search for the whole map.</p>
+    <p>2) It is fast because of the random sampling, which means we don’t need to search for the whole map.</p>
+    <h3>Cons: </h3>
+    <p>1) Because of the random sampling of points, there always exist lots of redundant points which will make the path longer.</p>
+    <p>2) The quality of the paths is not good as well, always straight lines with lots of corners. In other words, it’s not smooth enough for real vehicles to drive in the real world.</p>
+</div>
+
+<div>
+    <h2>3. Algorithm</h2>
+    <img src="../resource/pics/rrt0.jpg">
+    <h3 style="padding-left: 10px;">Steps:</h3>
+    <div>
+        <ol>
+            <li>Sampling a point randomly and call it q_rand.</li>
+            <li>Traversing the present tree and find the point in the tree which is nearest to q_rand and call it q_near.</li>
+            <li>Extend q_near in the direction of q_rand by a parameter called expandDis set by us thus get q_new.</li>
+            <li>Judging whether the limb q_near-q_new collides with those blocks. If not, we retain q_new. Instead, we drop it.</li>
+            <li>Repeat doing these four steps mentioned above and when q_new is the destination, we get the path.</li>
+        </ol>
+    </div>
+    <h3 style="padding-left: 10px;">My improvement</h3>
+    <p>Because of the random sampling, the final path always contains many points which mean the distance is longer than necessary.</p>
+    <p>Thus, I come up with a method called Pruning which means I will cut down those redundant limbs to get a shorter path with less point.</p>
+    <img src="../resource/pics/improvement.png">
+</div>
+
+<div>
+    <h2>4. My Result of RRT</h2>
+    <img src="../resource/pics/RRT.gif" style="padding-left: 10px; width:430px; height:380px;">
+</div>
+
+<div>
+    <h2>5. RRT*</h2>
+    <p>Although the RRT algorithm is a relatively high-efficiency algorithm that can handle path planning problems and has great advantages in many aspects, the RRT algorithm does not guarantee that the feasible path obtained is relatively optimized.</p>
+    <p>Therefore, many improvements on the RRT algorithm are also dedicated to solving the problem of path optimization and the RRT* algorithm is one of them.</p>
+</div>
+
+<div>
+    <h2>6. Algorithm of RRT*</h2>
+    <h3>1) Choosing parent</h3>
+    <img src="../resource/pics/rrt_star1.png">
+    <div>
+        <p>
+            After getting X_new, we will draw a circle with it as the center with a radius of r set by us. This circle will cover some points which mean all those points are not very far from X_new and can be considered to be its parent node. The thing we have to do next is calculate the cost of each candidate. The cost is the distance from the starting point to X_new passing those candidates, which is Distance(X_new-X_candidate )+Distance(X_candidate-X_start ).
+            After calculating all the costs of all candidates, we choose the candidate with the lowest cost as the parent node of X_new.
+        </p>
+    </div>
+    <h3>2) Rewire</h3>
+    <img src="../resource/pics/rrt_star2.png">
+    <div>
+        <p>
+            After confirming the final parent of X_new, it’s time to find its children. We use the former circle again but this time, instead of calculating the distance form the starting point to X_new,
+            we calculate the distance from the starting point to those two green points shown in the figure above, they are the points in the realm of the circle excluding the parent node of X_new. In the figure above, we can see that the upper green node changes its parent from the other green point to X_new because of the lower cost.
+        </p>
+    </div>
+    <div>
+        <h2>7. My Result of RRT*</h2>
+        <img src="../resource/pics/RRT_star.gif" style="width:430px; height:380px;">
+    </div>
+</div>
+
+<div>
+    <h2>8. RRT-connect</h2>
+    <p>Because the original RRT starts from one node (the starting point) to build the tree, it’s a little bit slow. So, we can adopt another method which starts both from the starting point and the destination. In this way, with the two trees building simultaneously, the speed will accede a lot.</p>
+</div>
+
+<div>
+    <h2>9. Algorithm of RRT-connect</h2>
+    <h3>1) Choosing parent</h3>
+    <img src="../resource/pics/rrt_connect.png">
+    <div>
+        <p>In each iteration, the initial step is the same as the original RRT algorithm, which is to sample random points and then expand. After getting the new node X_new from the first tree, the next step is to make X_new as the “random node” sampled by the second tree, so that the second tree will be able to grow towards the first one.</p>
+        <p>The tricky point here is that we always use the smaller tree as the expander which means it’s always the small tree growing towards the larger one. The reason is that it can speed up the searching (we need to search for the nearest nodes in the tree).</p>
+        <p>Finally, when two nodes from each tree join together, the two trees connected to one path which is our goal path.</p>
+    </div>
+    <div>
+        <h2>10. My Result of RRT-connect</h2>
+        <img src="../resource/pics/rrt_c1.png" style="width:400px; height:350px;">
+        <img src="../resource/pics/rrt_c1.png" style="width:400px; height:350px;">
+    </div>
+</div>
+
+<div>
+    <h2>10. Comparison of RRT, RRT* and RRT-connect</h2>
+    <p>My output is like the figure below, total trying times means the amount of times the tree expands and total running time means the time taken to find the path.</p>
+    <p>I calculated ten times for each of the three method recording the average time of them and write them into the form below.</p>
+    <img src="../resource/pics/compare.png" style="width:600px; height:250px;">
+    <p>From the form we can see that RRT* is better than RRT in both total trying times and total running times. The total trying times of RRT-connect is so much may be because of my code, The standard of two trees join together at one point is distance between the two points are not more then 0.05, maybe I can loose that limitation a little bit.</p>
+    <p>In addition, the total running time of RRT-connect is much less than the other two because it has two tree working together for a goal.</p>
+</div>
+
+
+<br><br><br>
+
+<%@include file="common/footer.jsp"%>
+
+</body>
+
+</html>
