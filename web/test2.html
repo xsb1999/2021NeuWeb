@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="./js/jquery.js"></script>
+</head>
+<body>
+
+<script>
+
+    function GetQueryString(name) {
+        var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
+        var r = window.location.search.substr(1).match(reg);
+        if (r != null)
+            return decodeURI(r[2]);
+        return null;
+    }
+
+    $(document).ready(function(){
+        var name = GetQueryString("name");
+        var age = GetQueryString("age");
+        var sex = GetQueryString("sex");
+        console.log(name);
+        console.log(age);
+        console.log(sex);
+    });
+
+
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>

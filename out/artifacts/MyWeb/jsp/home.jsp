@@ -7,7 +7,7 @@
     <title>home page</title>
     <link href="../css/home.css" rel="stylesheet"></link>
     <script src="../js/jquery.js"></script>
-    <script src="../js/ajax.js"></script>
+    <script src="../js/main.js"></script>
 </head>
 <body>
 
