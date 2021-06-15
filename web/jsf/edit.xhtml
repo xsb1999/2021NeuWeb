@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Created by IntelliJ IDEA.
+  User: Administrator
+  Date: 2021/6/15
+  Time: 1:07
+-->
+<!DOCTYPE html
+        PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html">
+
+<h:head>
+    <title>edit</title>
+    <script src="../js/jquery.js" type="text/javascript"></script>
+    <style type="text/css">
+        body{
+            background-color: #ffdee3;
+            background-image: linear-gradient(0deg, #ffdee3 0%, #B5FFFC 100%);
+        }
+    </style>
+</h:head>
+
+<h:body>
+
+    <script type="text/javascript">
+
+        function GetQueryString(name) {
+            var reg = new RegExp("(^|&amp;)" + name + "=([^&amp;]*)(&amp;|$)");
+            var r = window.location.search.substr(1).match(reg);
+            if (r != null)
+                return decodeURI(r[2]);
+            return null;
+        }
+
+        $(document).ready(function(){
+            var title = GetQueryString("title");
+            var summary = GetQueryString("summary");
+            var description = GetQueryString("description");
+            var type = GetQueryString("type");
+            var language = GetQueryString("language");
+
+            document.getElementById("myform:title").value = title;
+            document.getElementById("myform:language").value = language;
+            document.getElementById("myform:type").value = type;
+            document.getElementById("myform:description").value = description;
+            document.getElementById("myform:summary").value = summary;
+        });
+
+
+    </script>
+
+
+    <h:form id="myform">
+
+        <div align="center">
+            <br/><br/>
+            <h2>Edit your project here!</h2><br/>
+
+            Title:
+            <h:inputText value="#{project.title}" id="title"></h:inputText><br/><br/>
+            Summary:
+            <h:inputTextarea value="#{project.summary}" id="summary"></h:inputTextarea><br/><br/>
+            Description:
+            <h:inputTextarea value="#{project.description}" id="description"></h:inputTextarea><br/><br/>
+            Type:
+            <h:inputText value="#{project.type}" id="type"></h:inputText><br/><br/>
+            Language:
+            <h:selectOneMenu value="#{project.language}" id="language">
+                <f:selectItems value="#{languageOptions.language}"/>
+            </h:selectOneMenu>
+            <br/><br/>
+
+            <h:commandButton value="Finish" action="#{project.update}"></h:commandButton>
+        </div>
+
+    </h:form>
+
+
+</h:body>
+
+</html>

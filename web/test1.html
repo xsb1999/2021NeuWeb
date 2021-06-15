@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://java.sun.com/jsf/html">
+<head>
+    <meta charset="UTF-8">
+    <title>test1</title>
+</head>
+<body>
+
+<script src="./js/jquery.js"></script>
+<table>
+    <tr>
+        <td>name</td>
+        <td>age</td>
+        <td>sex</td>
+    </tr>
+    <tr>
+        <td class="omg">tom</td>
+        <td>20</td>
+        <td>male</td>
+        <td><button onclick='daochu(this)'>ok</button></td>
+    </tr>
+    <tr>
+        <td class="omg">kim</td>
+        <td>20</td>
+        <td>male</td>
+        <td><button onclick='daochu(this)'>ok</button></td>
+    </tr>
+    <tr>
+        <td class="omg">jim</td>
+        <td>20</td>
+        <td>male</td>
+        <td><button onclick='daochu(this)'>ok</button></td>
+    </tr>
+</table>
+
+
+<script>
+
+    function daochu(val) {
+        var value = $(val).parent().parent().find("td");
+        var exName = value.eq(0).text();
+        var age = value.eq(1).text();
+        var sex = value.eq(2).text();
+
+        window.location.href = "test2-2.jsf?name="+exName+"&age="+age+"&sex="+sex;
+    }
+
+
+</script>
+
+
+</body>
+</html>

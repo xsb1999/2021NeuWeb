@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Created by IntelliJ IDEA.
+  User: Administrator
+  Date: 2021/6/15
+  Time: 20:58
+-->
+<!DOCTYPE html
+        PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html">
+
+<h:head>
+    <title>Title</title>
+    <script src="./js/jquery.js" type="text/javascript"></script>
+</h:head>
+
+<h:body>
+    <script type="text/javascript">
+
+        function GetQueryString(name) {
+            var reg = new RegExp("(^|&amp;)" + name + "=([^&amp;]*)(&amp;|$)");
+            var r = window.location.search.substr(1).match(reg);
+            if (r != null)
+                return decodeURI(r[2]);
+            return null;
+        }
+
+        $(document).ready(function(){
+            var name = GetQueryString("name");
+            var age = GetQueryString("age");
+            var sex = GetQueryString("sex");
+
+            document.getElementById("myform:title").value = name;
+            document.getElementById("myform:language").value = age;
+            document.getElementById("myform:type").value = sex;
+
+        });
+
+
+    </script>
+
+
+    <h:form id="myform">
+
+        Title:
+        <h:inputText value="#{project.title}" id="title"></h:inputText>
+        Language:
+        <h:inputText value="#{project.language}" id="language"></h:inputText>
+        Type:
+        <h:inputText value="#{project.type}" id="type"></h:inputText>
+
+        <h:commandButton value="click me" action="#{project.test_f}"></h:commandButton>
+
+    </h:form>
+
+
+</h:body>
+
+</html>
