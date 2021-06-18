@@ -12,6 +12,9 @@ function f1(){
                     "<td>" + data[i].description + "</td>"+
                     "<td>" + data[i].type + "</td>"+
                     "<td>" + data[i].language + "</td>"+
+                    "<td>" + data[i].cost + "</td>"+
+                    "<td>" + data[i].start_date + "</td>"+
+                    "<td>" + data[i].finish_date + "</td>"+
                     "<td>" + "<button onclick='edit(this)'>edit</button>" + "</td>"
                     +"</tr>"
             }
@@ -28,6 +31,9 @@ function edit(val) {
     var description = value.eq(2).text();
     var type = value.eq(3).text();
     var language = value.eq(4).text();
+    var cost = value.eq(5).text();
+    var start_date = value.eq(6).text();
+    var finish_date = value.eq(7).text();
 
-    window.location.href = "edit.jsf?title="+title+"&summary="+summary+"&description="+description+"&type="+type+"&language="+language;
+    window.location.href = "edit.jsf?title="+title+"&summary="+summary+"&description="+description+"&type="+type+"&language="+language+"&cost="+cost+"&start_date="+start_date+"&finish_date="+finish_date;
 }
