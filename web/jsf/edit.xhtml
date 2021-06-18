@@ -42,12 +42,19 @@
             var description = GetQueryString("description");
             var type = GetQueryString("type");
             var language = GetQueryString("language");
+            var cost = GetQueryString("cost");
+            var start_date = GetQueryString("start_date");
+            var finish_date = GetQueryString("finish_date");
 
             document.getElementById("myform:title").value = title;
             document.getElementById("myform:language").value = language;
             document.getElementById("myform:type").value = type;
             document.getElementById("myform:description").value = description;
             document.getElementById("myform:summary").value = summary;
+            document.getElementById("myform:cost").value = cost;
+            document.getElementById("myform:start_date").value = start_date;
+            document.getElementById("myform:finish_date").value = finish_date;
+
         });
 
 
@@ -57,23 +64,72 @@
     <h:form id="myform">
 
         <div align="center">
-            <br/><br/>
             <h2>Edit your project here!</h2><br/>
 
+            <h:panelGrid columns="3" styleClass="formTable">
             Title:
-            <h:inputText value="#{project.title}" id="title"></h:inputText><br/><br/>
+            <h:inputText value="#{project.title}" id="title"
+                         required="true"
+                         requiredMessage="You must enter a title!"/>
+            <h:message for="title" style="color: red"/>
+            <br/>
             Summary:
-            <h:inputTextarea value="#{project.summary}" id="summary"></h:inputTextarea><br/><br/>
+            <h:inputTextarea value="#{project.summary}" id="summary"
+                             required="true"
+                             requiredMessage="You must enter a summary!"/>
+            <h:message for="summary" style="color: red"/>
+            <br/>
             Description:
-            <h:inputTextarea value="#{project.description}" id="description"></h:inputTextarea><br/><br/>
+            <h:inputTextarea value="#{project.description}" id="description"
+                             required="true"
+                             requiredMessage="You must enter a description!"/>
+            <h:message for="description" style="color: red"/>
+            <br/>
             Type:
-            <h:inputText value="#{project.type}" id="type"></h:inputText><br/><br/>
+            <h:inputText value="#{project.type}" id="type"
+                         required="true"
+                         requiredMessage="You must enter a type!"/>
+            <h:message for="type" style="color: red"/>
+            <br/>
             Language:
-            <h:selectOneMenu value="#{project.language}" id="language">
+            <h:selectOneMenu value="#{project.language}" id="language" required="true" requiredMessage="You must select a language!">
                 <f:selectItems value="#{languageOptions.language}"/>
             </h:selectOneMenu>
-            <br/><br/>
+            <h:message for="language" style="color: red"/>
+            <br/>
 
+            Cost: $
+            <h:inputText value="#{project.cost}" id="cost"
+                         required="true"
+                         requiredMessage="You must enter a cost!"
+                         converterMessage="Cost must be a number!"
+                         validatorMessage="Cost must be greater than 0 !">
+                <f:validateDoubleRange minimum="0"/>
+            </h:inputText>
+            <h:message for="cost" style="color: red"/>
+            <br/>
+
+            Start date (yyyy-mm-dd):
+            <h:inputText value="#{project.startDate}" id="start_date"
+                         required="true"
+                         requiredMessage="You must enter a start date!"
+                         converterMessage="Illegal date (should be yyyy-mm-dd)">
+                <f:convertDateTime pattern="yyyy-MM-dd"/>
+            </h:inputText>
+            <h:message for="start_date" style="color: red"/>
+            <br/>
+
+            Finish date (yyyy-mm-dd):
+            <h:inputText value="#{project.finishDate}" id="finish_date"
+                         required="true"
+                         requiredMessage="You must enter a finish date!"
+                         converterMessage="Illegal date (should be yyyy-mm-dd)">
+                <f:convertDateTime pattern="yyyy-MM-dd"/>
+            </h:inputText>
+            <h:message for="finish_date" style="color: red"/>
+            </h:panelGrid>
+
+            <br/><br/>
             <h:commandButton value="Finish" action="#{project.update}"></h:commandButton>
         </div>
 

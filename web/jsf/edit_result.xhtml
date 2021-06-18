@@ -26,7 +26,6 @@
 
     <h:form>
         <div align="center">
-            <br/><br/>
             <h2>Edit Result</h2><br/>
             <b>Title:&nbsp;&nbsp;</b>
             <h:outputText value="#{project.title}" id="title"></h:outputText><br/><br/>
@@ -37,7 +36,13 @@
             <b>Type:&nbsp;&nbsp;</b>
             <h:outputText value="#{project.type}" id="type"></h:outputText><br/><br/>
             <b>Language:&nbsp;&nbsp;</b>
-            <h:outputText value="#{project.language}" id="language"></h:outputText>
+            <h:outputText value="#{project.language}" id="language"></h:outputText><br/><br/>
+            <b>Cost:&nbsp;&nbsp;$</b>
+            <h:outputText value="#{project.cost}" id="cost"></h:outputText><br/><br/>
+            <b>Start date:&nbsp;&nbsp;</b>
+            <h:outputText value="#{project.startDate}" id="start_date"></h:outputText><br/><br/>
+            <b>Finish date:&nbsp;&nbsp;</b>
+            <h:outputText value="#{project.finishDate}" id="finish_date"></h:outputText>
         </div>
     </h:form>
 
