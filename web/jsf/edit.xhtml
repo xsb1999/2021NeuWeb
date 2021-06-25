@@ -20,6 +20,8 @@
         body{
             background-color: #ffdee3;
             background-image: linear-gradient(0deg, #ffdee3 0%, #B5FFFC 100%);
+            background-repeat:no-repeat;
+            background-size:100% auto;
         }
     </style>
 </h:head>
@@ -37,6 +39,7 @@
         }
 
         $(document).ready(function(){
+            var pid = GetQueryString("pid");
             var title = GetQueryString("title");
             var summary = GetQueryString("summary");
             var description = GetQueryString("description");
@@ -46,6 +49,8 @@
             var start_date = GetQueryString("start_date");
             var finish_date = GetQueryString("finish_date");
 
+            document.getElementById("myform:pid").value = pid;
+            document.getElementById("myform:pid1").value = pid;
             document.getElementById("myform:title").value = title;
             document.getElementById("myform:language").value = language;
             document.getElementById("myform:type").value = type;
@@ -67,74 +72,93 @@
             <h2>Edit your project here!</h2><br/>
 
             <h:panelGrid columns="3" styleClass="formTable">
-            Title:
-            <h:inputText value="#{project.title}" id="title"
-                         required="true"
-                         requiredMessage="You must enter a title!"/>
-            <h:message for="title" style="color: red"/>
-            <br/>
-            Summary:
-            <h:inputTextarea value="#{project.summary}" id="summary"
+                <div style="text-align: center">
+                    <p style="color: #fc6c04"><b>Please input the correct format.</b></p>
+                </div>
+                <h:inputHidden value="#{projects.id}" id="pid"
+                               required="true"
+                               requiredMessage="You must enter a id!"/>
+                <h:message for="pid" style="color: red"/>
+                <br/>
+
+                Project Id:
+                <h:inputText value="#{projects.id}" id="pid1" readonly="true"
                              required="true"
-                             requiredMessage="You must enter a summary!"/>
-            <h:message for="summary" style="color: red"/>
-            <br/>
-            Description:
-            <h:inputTextarea value="#{project.description}" id="description"
+                             requiredMessage="You must enter a id!"/>
+                <h:message for="pid1" style="color: red"/>
+                <br/>
+
+                Title:
+                <h:inputText value="#{projects.title}" id="title"
                              required="true"
-                             requiredMessage="You must enter a description!"/>
-            <h:message for="description" style="color: red"/>
-            <br/>
-            Type:
-            <h:inputText value="#{project.type}" id="type"
-                         required="true"
-                         requiredMessage="You must enter a type!"/>
-            <h:message for="type" style="color: red"/>
-            <br/>
-            Language:
-            <h:selectOneMenu value="#{project.language}" id="language" required="true" requiredMessage="You must select a language!">
-                <f:selectItems value="#{languageOptions.language}"/>
-            </h:selectOneMenu>
-            <h:message for="language" style="color: red"/>
-            <br/>
+                             requiredMessage="You must enter a title!"/>
+                <h:message for="title" style="color: red"/>
+                <br/>
+                Summary:
+                <h:inputTextarea value="#{projects.summary}" id="summary"
+                                 required="true"
+                                 requiredMessage="You must enter a summary!"/>
+                <h:message for="summary" style="color: red"/>
+                <br/>
+                Description:
+                <h:inputTextarea value="#{projects.description}" id="description"
+                                 required="true"
+                                 requiredMessage="You must enter a description!"/>
+                <h:message for="description" style="color: red"/>
+                <br/>
+                Type:
+                <h:inputText value="#{projects.type}" id="type"
+                             required="true"
+                             requiredMessage="You must enter a type!"/>
+                <h:message for="type" style="color: red"/>
+                <br/>
+                Language:
+                <h:selectOneMenu value="#{projects.language}" id="language" required="true" requiredMessage="You must select a language!">
+                    <f:selectItems value="#{languageOptions.language}"/>
+                </h:selectOneMenu>
+                <h:message for="language" style="color: red"/>
+                <br/>
 
-            Cost: $
-            <h:inputText value="#{project.cost}" id="cost"
-                         required="true"
-                         requiredMessage="You must enter a cost!"
-                         converterMessage="Cost must be a number!"
-                         validatorMessage="Cost must be greater than 0 !">
-                <f:validateDoubleRange minimum="0"/>
-            </h:inputText>
-            <h:message for="cost" style="color: red"/>
-            <br/>
+                Cost: $
+                <h:inputText value="#{projects.cost}" id="cost"
+                             required="true"
+                             requiredMessage="You must enter a cost!"
+                             converterMessage="Cost must be a number!"
+                             validatorMessage="Cost must be greater than 0 !">
+                    <f:validateDoubleRange minimum="0"/>
+                </h:inputText>
+                <h:message for="cost" style="color: red"/>
+                <br/>
 
-            Start date (yyyy-mm-dd):
-            <h:inputText value="#{project.startDate}" id="start_date"
-                         required="true"
-                         requiredMessage="You must enter a start date!"
-                         converterMessage="Illegal date (should be yyyy-mm-dd)">
-                <f:convertDateTime pattern="yyyy-MM-dd"/>
-            </h:inputText>
-            <h:message for="start_date" style="color: red"/>
-            <br/>
+                Start date (yyyy-mm-dd):
+                <h:inputTextarea value="#{projects.startDate}" id="start_date"
+                             required="true"
+                             requiredMessage="You must enter a start date!"
+                             converterMessage="Illegal date (should be yyyy-mm-dd)">
+                    <f:convertDateTime pattern="yyyy-MM-dd"/>
+                </h:inputTextarea>
+                <h:message for="start_date" style="color: red"/>
+                <br/>
 
-            Finish date (yyyy-mm-dd):
-            <h:inputText value="#{project.finishDate}" id="finish_date"
-                         required="true"
-                         requiredMessage="You must enter a finish date!"
-                         converterMessage="Illegal date (should be yyyy-mm-dd)">
-                <f:convertDateTime pattern="yyyy-MM-dd"/>
-            </h:inputText>
-            <h:message for="finish_date" style="color: red"/>
+                Finish date (yyyy-mm-dd):
+                <h:inputTextarea value="#{projects.finishDate}" id="finish_date"
+                             required="true"
+                             requiredMessage="You must enter a finish date!"
+                             converterMessage="Illegal date (should be yyyy-mm-dd)">
+                    <f:convertDateTime pattern="yyyy-MM-dd"/>
+                </h:inputTextarea>
+                <h:message for="finish_date" style="color: red"/>
             </h:panelGrid>
 
             <br/><br/>
-            <h:commandButton value="Finish" action="#{project.update}"></h:commandButton>
+            <h:commandButton value="Finish" action="#{projects.updateProjects}"></h:commandButton>
         </div>
 
     </h:form>
-
+    <br/>
+    <div style="text-align: center">
+        <button onclick="javascrtpt:window.location.href='projects1.jsf'">cancel</button>
+    </div>
 
 </h:body>
 

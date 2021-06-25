@@ -23,17 +23,22 @@ function f1(){
     });
 }
 
+
+
 // edit projects (get the row of the clicked button)
 function edit(val) {
     var value = $(val).parent().parent().find("td");
-    var title = value.eq(0).text();
-    var summary = value.eq(1).text();
-    var description = value.eq(2).text();
-    var type = value.eq(3).text();
-    var language = value.eq(4).text();
-    var cost = value.eq(5).text();
-    var start_date = value.eq(6).text();
-    var finish_date = value.eq(7).text();
+    var pid = value.eq(0).text();
+    var title = value.eq(1).text();
+    var summary = value.eq(2).text();
+    var description = value.eq(3).text();
+    var type = value.eq(4).text();
+    var language = value.eq(5).text();
+    var cost = value.eq(6).text();
+    var start_date = value.eq(7).text();
+    var finish_date = value.eq(8).text();
 
-    window.location.href = "edit.jsf?title="+title+"&summary="+summary+"&description="+description+"&type="+type+"&language="+language+"&cost="+cost+"&start_date="+start_date+"&finish_date="+finish_date;
+    window.location.href = "edit.jsf?pid="+pid+"&title="+title+"&summary="+summary+"&description="+description+"&type="+type+"&language="+language+"&cost="+cost+"&start_date="+start_date+"&finish_date="+finish_date;
 }
+
+

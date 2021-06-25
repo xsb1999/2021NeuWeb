@@ -18,6 +18,8 @@
         body{
             background-color: #ffdee3;
             background-image: linear-gradient(0deg, #ffdee3 0%, #B5FFFC 100%);
+            background-repeat:no-repeat;
+            background-size:100% auto;
         }
     </style>
 </h:head>
@@ -27,25 +29,28 @@
     <h:form>
         <div align="center">
             <h2>Edit Result</h2><br/>
+            <b>Project Id:&nbsp;&nbsp;</b>
+            <h:outputText value="#{projects.id}" id="pid"></h:outputText><br/><br/>
             <b>Title:&nbsp;&nbsp;</b>
-            <h:outputText value="#{project.title}" id="title"></h:outputText><br/><br/>
+            <h:outputText value="#{projects.title}" id="title"></h:outputText><br/><br/>
             <b>Summary:&nbsp;&nbsp;</b>
-            <h:outputText value="#{project.summary}" id="summary"></h:outputText><br/><br/>
+            <h:outputText value="#{projects.summary}" id="summary"></h:outputText><br/><br/>
             <b>Description:&nbsp;&nbsp;</b>
-            <h:outputText value="#{project.description}" id="description"></h:outputText><br/><br/>
+            <h:outputText value="#{projects.description}" id="description"></h:outputText><br/><br/>
             <b>Type:&nbsp;&nbsp;</b>
-            <h:outputText value="#{project.type}" id="type"></h:outputText><br/><br/>
+            <h:outputText value="#{projects.type}" id="type"></h:outputText><br/><br/>
             <b>Language:&nbsp;&nbsp;</b>
-            <h:outputText value="#{project.language}" id="language"></h:outputText><br/><br/>
+            <h:outputText value="#{projects.language}" id="language"></h:outputText><br/><br/>
             <b>Cost:&nbsp;&nbsp;$</b>
-            <h:outputText value="#{project.cost}" id="cost"></h:outputText><br/><br/>
+            <h:outputText value="#{projects.cost}" id="cost"></h:outputText><br/><br/>
             <b>Start date:&nbsp;&nbsp;</b>
-            <h:outputText value="#{project.startDate}" id="start_date"></h:outputText><br/><br/>
+            <h:outputText value="#{projects.startDate}" id="start_date"></h:outputText><br/><br/>
             <b>Finish date:&nbsp;&nbsp;</b>
-            <h:outputText value="#{project.finishDate}" id="finish_date"></h:outputText>
+            <h:outputText value="#{projects.finishDate}" id="finish_date"></h:outputText><br/><br/>
+
+            <h:commandButton value="back to projects page" action="#{user.updateProjectsList}"></h:commandButton>
         </div>
     </h:form>
-
 </h:body>
 
 </html>

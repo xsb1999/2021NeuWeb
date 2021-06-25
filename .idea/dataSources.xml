@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
+    <data-source source="LOCAL" name="myDatabase_Andy" uuid="8fc356ff-7f30-4a30-a932-fa5014ec73eb">
+      <driver-ref>derby.embedded</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>org.apache.derby.jdbc.EmbeddedDriver</jdbc-driver>
+      <jdbc-url>jdbc:derby:F:/apache-tomcat-9.0.31/bin/myDatabase_Andy</jdbc-url>
+    </data-source>
+  </component>
+</project>

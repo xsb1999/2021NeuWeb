@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Created by IntelliJ IDEA.
+  User: Administrator
+  Date: 2021/6/23
+  Time: 1:46
+-->
+<!DOCTYPE html
+        PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html">
+
+<h:head>
+    <title>add result</title>
+    <style type="text/css">
+        body{
+            background-color: #ffdee3;
+            background-image: linear-gradient(0deg, #ffdee3 0%, #B5FFFC 100%);
+            background-repeat:no-repeat;
+            background-size:100% auto;
+        }
+    </style>
+</h:head>
+
+<h:body>
+
+    <h:form>
+        <div align="center">
+            <h2>Add Result</h2><br/>
+            <b>Title:&nbsp;&nbsp;</b>
+            <h:outputText value="#{projects.title}" id="title"></h:outputText><br/><br/>
+            <b>Summary:&nbsp;&nbsp;</b>
+            <h:outputText value="#{projects.summary}" id="summary"></h:outputText><br/><br/>
+            <b>Description:&nbsp;&nbsp;</b>
+            <h:outputText value="#{projects.description}" id="description"></h:outputText><br/><br/>
+            <b>Type:&nbsp;&nbsp;</b>
+            <h:outputText value="#{projects.type}" id="type"></h:outputText><br/><br/>
+            <b>Language:&nbsp;&nbsp;</b>
+            <h:outputText value="#{projects.language}" id="language"></h:outputText><br/><br/>
+            <b>Cost:&nbsp;&nbsp;$</b>
+            <h:outputText value="#{projects.cost}" id="cost"></h:outputText><br/><br/>
+            <b>Start date:&nbsp;&nbsp;</b>
+            <h:outputText value="#{projects.startDate}" id="start_date"></h:outputText><br/><br/>
+            <b>Finish date:&nbsp;&nbsp;</b>
+            <h:outputText value="#{projects.finishDate}" id="finish_date"></h:outputText><br/><br/>
+
+            <h:commandButton value="back to projects page" action="#{user.updateProjectsList}"></h:commandButton>
+        </div>
+    </h:form>
+</h:body>
+
+</html>
