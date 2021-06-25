@@ -10,6 +10,7 @@
         "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
 <html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:h="http://java.sun.com/jsf/html">
 
 <h:head>
@@ -30,28 +31,93 @@
     </div>
 
 
-    <!-- My Projects -->
-    <h2 style="text-align: center;color: rgb(64, 5, 158); font-family: Arial, Helvetica, sans-serif;"><i>My projects</i></h2>
 
-    <div style="text-align: center;">
-        <input type="button" id="btn" value="Click for details" onclick="f1()"/>
-    </div>
+        <!-- My Projects -->
+        <h2 style="text-align: center;color: rgb(64, 5, 158); font-family: Arial, Helvetica, sans-serif;"><i>My projects</i></h2>
+
+        <div style="text-align: center;">
+            <input type="button" id="btn2" value="add a project" onclick="javascrtpt:window.location.href='addProjects.jsf'"/>
+        </div>
+        <br></br>
+        <table class="projects_table" width="80%" align="center">
+            <tr>
+                <td><b>Id</b></td>
+                <td><b>Title</b></td>
+                <td><b>Show Details</b></td>
+            </tr>
+            <tbody>
+
+            <ui:repeat var="p" value="#{projectManager.projectList}">
+                <h:panelGroup id="group">
+                    <tr>
+                        <td>
+                            #{p.id}
+                        </td>
+                        <td>
+                            #{p.title}
+                        </td>
+                        <td>
+                            <button onclick= "
+                                document.getElementById('p_id').innerHTML = '#{p.id}';
+                                document.getElementById('p_title').innerHTML = '#{p.title}';
+                                document.getElementById('p_summary').innerHTML = '#{p.summary}';
+                                document.getElementById('p_description').innerHTML = '#{p.description}';
+                                document.getElementById('p_type').innerHTML = '#{p.type}';
+                                document.getElementById('p_language').innerHTML = '#{p.language}';
+                                document.getElementById('p_cost').innerHTML = '#{p.cost}';
+                                document.getElementById('p_startdate').innerHTML = '#{p.startDate}';
+                                document.getElementById('p_finishdate').innerHTML = '#{p.finishDate}';">
+                                details
+                            </button>
+                        </td>
+
+                    </tr>
+                </h:panelGroup>
+            </ui:repeat>
+
+            </tbody>
+        </table>
+
+
+
     <br></br>
-    <table class="projects_table" width="80%" align="center">
-        <tr>
-            <td><b>Title</b></td>
-            <td><b>Summary</b></td>
-            <td><b>Description</b></td>
-            <td><b>Type</b></td>
-            <td><b>Language</b></td>
-            <td><b>Cost</b></td>
-            <td><b>Start date</b></td>
-            <td><b>Finish date</b></td>
-            <td><b>Edit</b></td>
-        </tr>
-        <tbody id="content">
-        </tbody>
-    </table>
+    <br></br>
+
+    <h2 style="text-align: center;color: rgb(64, 5, 158); font-family: Arial, Helvetica, sans-serif;"><i>Selected Project Details</i></h2>
+
+        <table class="projects_table" width="80%" align="center">
+
+            <tr>
+                <td><b>Id</b></td>
+                <td><b>Title</b></td>
+                <td><b>Summary</b></td>
+                <td><b>Description</b></td>
+                <td><b>Type</b></td>
+                <td><b>Language</b></td>
+                <td><b>Cost($)</b></td>
+                <td><b>Start date</b></td>
+                <td><b>Finish date</b></td>
+                <td><b>Edit</b></td>
+            </tr>
+            <tbody>
+                <tr>
+                    <td id="p_id"></td>
+                    <td id="p_title"></td>
+                    <td id="p_summary"></td>
+                    <td id="p_description"></td>
+                    <td id="p_type"></td>
+                    <td id="p_language"></td>
+                    <td id="p_cost"></td>
+                    <td id="p_startdate"></td>
+                    <td id="p_finishdate"></td>
+                    <td>
+                        <button onclick="edit(this)">edit</button>
+                    </td>
+                </tr>
+            </tbody>
+
+        </table>
+
 
     <br></br>
     <br></br>
@@ -80,8 +146,6 @@
         </div>
 
     </div>
-
-
 
 </h:body>
 

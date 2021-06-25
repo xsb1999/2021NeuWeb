@@ -1,0 +1,13 @@
+----------------------------------------------------------------
+Wed Jun 23 23:32:08 CST 2021:
+Booting Derby version The Apache Software Foundation - Apache Derby - 10.14.2.0 - (1828579): instance a816c00e-017a-3980-0133-00001556f010 
+on database directory C:\Users\Administrator\IdeaProjects\2021WebHomework\myDatabase_Andy with class loader sun.misc.Launcher$ExtClassLoader@27716f4 
+Loaded from file:/C:/Program%20Files/Java/jdk1.8.0_202/jre/lib/ext/derby.jar
+java.vendor=Oracle Corporation
+java.runtime.version=1.8.0_202-b08
+user.dir=C:\Users\Administrator\IdeaProjects\2021WebHomework
+os.name=Windows 7
+os.arch=amd64
+os.version=6.1
+derby.system.home=null
+Database Class Loader started - derby.database.classpath=''

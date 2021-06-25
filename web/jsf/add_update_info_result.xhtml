@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Created by IntelliJ IDEA.
+  User: Administrator
+  Date: 2021/6/23
+  Time: 23:57
+-->
+<!DOCTYPE html
+        PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html">
+
+<h:head>
+    <title>add info result</title>
+</h:head>
+    <style type="text/css">
+        body{
+            background-color: #ffdee3;
+            background-image: linear-gradient(0deg, #ffdee3 0%, #B5FFFC 100%);
+            background-repeat:no-repeat;
+            background-size:100% auto;
+    }
+</style>
+
+<h:body>
+
+
+    <h:form id="myform">
+
+        <div align="center">
+            <h2>Here comes the detailed information !</h2><br/>
+
+                Basic Introduction:
+                <h:outputText value="#{user.basic_intro}"/>
+                <br/><br/>
+                My interests:
+                <h:outputText value="#{user.interests}"/>
+                <br/><br/>
+                My experiences:
+                <h:outputText value="#{user.experiences}"/>
+                <br/><br/>
+                My skills:
+                <h:outputText value="#{user.skills}"/>
+                <br/><br/>
+                My career goals:
+                <h:outputText value="#{user.goals}"/>
+        </div>
+
+    </h:form>
+
+    <br/><br/>
+    <div style="text-align: center">
+        <button onclick="javascrtpt:window.location.href='home1.jsf'">back to home page</button>
+    </div>
+
+
+</h:body>
+
+</html>

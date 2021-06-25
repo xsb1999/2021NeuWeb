@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Created by IntelliJ IDEA.
+  User: Administrator
+  Date: 2021/6/23
+  Time: 23:44
+-->
+<!DOCTYPE html
+        PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html">
+
+<h:head>
+    <title>Projects</title>
+    <link href="../css/home.css" rel="stylesheet"></link>
+    <link href="../css/navigation.css" rel="stylesheet"></link>
+    <script src="../js/jquery.js" type="text/javascript"></script>
+    <script src="../js/main.js" type="text/javascript"></script>
+</h:head>
+
+<h:body>
+
+    <div class="topnav">
+        <a href="./home1.jsf"><b>Home</b></a>
+        <a><b>|</b></a>
+        <a href="./projects1.jsf"><b>My Projects</b></a>
+        <a><b>|</b></a>
+        <a href="./login.jsf"><b>LogOut</b></a>
+        <input type="text" placeholder="Search..."></input>
+    </div>
+
+
+    <!-- My Projects -->
+    <h2 style="text-align: center;color: rgb(64, 5, 158); font-family: Arial, Helvetica, sans-serif;"><i>My projects</i></h2>
+
+    <div style="text-align: center;">
+        <input type="button" id="btn2" value="add a project" onclick="javascrtpt:window.location.href='addProjects.jsf'"/>
+    </div>
+    <br></br>
+    <table class="projects_table" width="80%" align="center">
+        <tr>
+            <td><b>Id</b></td>
+            <td><b>Title</b></td>
+            <td><b>Show Details</b></td>
+        </tr>
+        <tbody>
+
+        <ui:repeat var="p" value="#{user.projectsList}">
+            <h:panelGroup id="group">
+                <tr>
+                    <td>
+                        #{p.id}
+                    </td>
+                    <td>
+                        #{p.title}
+                    </td>
+                    <td>
+                        <button onclick= "
+                                document.getElementById('p_id').innerHTML = '#{p.id}';
+                                document.getElementById('p_title').innerHTML = '#{p.title}';
+                                document.getElementById('p_summary').innerHTML = '#{p.summary}';
+                                document.getElementById('p_description').innerHTML = '#{p.description}';
+                                document.getElementById('p_type').innerHTML = '#{p.type}';
+                                document.getElementById('p_language').innerHTML = '#{p.language}';
+                                document.getElementById('p_cost').innerHTML = '#{p.cost}';
+                                document.getElementById('p_startdate').innerHTML = '#{p.startDate}';
+                                document.getElementById('p_finishdate').innerHTML = '#{p.finishDate}';">
+                            details
+                        </button>
+                    </td>
+
+                </tr>
+            </h:panelGroup>
+        </ui:repeat>
+
+        </tbody>
+    </table>
+
+
+
+    <br></br>
+    <br></br>
+
+    <h2 style="text-align: center;color: rgb(64, 5, 158); font-family: Arial, Helvetica, sans-serif;"><i>Selected Project Details</i></h2>
+
+    <table class="projects_table" width="80%" align="center">
+
+        <tr>
+            <td><b>Id</b></td>
+            <td><b>Title</b></td>
+            <td><b>Summary</b></td>
+            <td><b>Description</b></td>
+            <td><b>Type</b></td>
+            <td><b>Language</b></td>
+            <td><b>Cost($)</b></td>
+            <td><b>Start date</b></td>
+            <td><b>Finish date</b></td>
+            <td><b>Edit</b></td>
+        </tr>
+        <tbody>
+        <tr>
+            <td id="p_id"></td>
+            <td id="p_title"></td>
+            <td id="p_summary"></td>
+            <td id="p_description"></td>
+            <td id="p_type"></td>
+            <td id="p_language"></td>
+            <td id="p_cost"></td>
+            <td id="p_startdate"></td>
+            <td id="p_finishdate"></td>
+            <td>
+                <button onclick="edit(this)">edit</button>
+            </td>
+        </tr>
+        </tbody>
+
+    </table>
+
+
+    <br></br>
+    <br></br>
+    <br></br>
+    <br></br>
+
+
+
+
+    <div style="text-align: center">
+
+        <div class="footer-top">
+
+            <a href="#">Help</a> |
+
+            <a href="#">Feedback</a> |
+
+            <a href="#">Contact</a> |
+
+            <a href="#">Report</a>
+
+            <p>
+
+                ©Copyright 2021 Northeastern University | Liaoning ICP is prepared 110098688-3
+
+            </p>
+
+        </div>
+
+    </div>
+
+</h:body>
+
+</html>

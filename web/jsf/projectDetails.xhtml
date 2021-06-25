@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Created by IntelliJ IDEA.
+  User: Administrator
+  Date: 2021/6/22
+  Time: 21:28
+-->
+<!DOCTYPE html
+        PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html">
+
+<h:head>
+    <title>projectDetails</title>
+</h:head>
+
+<h:body>
+
+
+    <script type="text/javascript">
+
+        function GetQueryString(name) {
+            var reg = new RegExp("(^|&amp;)" + name + "=([^&amp;]*)(&amp;|$)");
+            var r = window.location.search.substr(1).match(reg);
+            if (r != null)
+                return decodeURI(r[2]);
+            return null;
+        }
+
+        $(document).ready(function(){
+            var pid = GetQueryString("pid");
+            var title = GetQueryString("title");
+
+            document.getElementById("myform:pid").value = pid;
+            document.getElementById("myform:title").value = title;
+
+        });
+
+    </script>
+
+
+    <h:form>
+        <div align="center">
+            <h2>Project Details</h2><br/>
+            <b>Project Id:&nbsp;&nbsp;</b>
+            <h:outputText value="#{projects.id}" id="pid"></h:outputText><br/><br/>
+            <b>Title:&nbsp;&nbsp;</b>
+            <h:outputText value="#{projects.title}" id="title"></h:outputText><br/><br/>
+
+
+        </div>
+    </h:form>
+
+
+
+</h:body>
+
+</html>

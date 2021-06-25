@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Created by IntelliJ IDEA.
+  User: Administrator
+  Date: 2021/6/23
+  Time: 14:53
+-->
+<!DOCTYPE html
+        PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:h="http://java.sun.com/jsf/html">
+
+<h:head>
+    <title>Register</title>
+    <link rel="stylesheet" href="../css/login.css"/>
+    <link rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/4.7.0/css/font-awesome.css"/>
+</h:head>
+
+<h:body>
+    <div id="login-box">
+    <h:form id="login_form1">
+
+        <h1>Register</h1>
+        <div class="form">
+            <div class="item">
+                <i class="fa fa-github-alt" style="font-size:24px"></i>
+                <h:inputText value="#{user.username}" a:placeholder="Username" id="u_name"
+                             required="true"
+                             requiredMessage="You must enter the username!"/>
+                <h:message for="u_name" style="color: red"/>
+            </div>
+            <div class="item">
+                <i class="fa fa-search" style="font-size:24px"></i>
+                <h:inputText value="#{user.password}" a:placeholder="Password" id="u_pwd"
+                             required="true"
+                             requiredMessage="You must enter the password!"/>
+                <h:message for="u_pwd" style="color: red"/>
+            </div>
+            <div class="item">
+                <i class="fa fa-search" style="font-size:24px"></i>
+                <h:inputText value="#{user.password_confirm}" a:placeholder="Password Again" id="u_pwd2"
+                             required="true"
+                             requiredMessage="You must enter the password confirmation!"/>
+                <h:message for="u_pwd2" style="color: red"/>
+            </div>
+        </div>
+        <h:commandButton value="Register" styleClass="login_btn" action="#{user.register}"></h:commandButton>
+    </h:form>
+    </div>
+</h:body>
+
+</html>
